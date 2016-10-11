@@ -12,9 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String[] _groups = {"Cortes", "Bebidas", "Comidas", "Postres"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        loadGroups();
     }
 
     @Override
@@ -97,5 +105,24 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void loadGroups() {
+        ArrayAdapter groupsAdapter = new ArrayAdapter<>(this, R.layout.group_main, R.id.name, _groups);
+        ListView groupsView = (ListView)findViewById(R.id.groups);
+        groupsView.setAdapter(groupsAdapter);
+
+        groupsView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                groupClicked(id);
+            }
+        });
+
+        return;
+    }
+
+    private void groupClicked(long id) {
+        Toast.makeText(MainActivity.this, "Clicked " + id, Toast.LENGTH_SHORT).show();
     }
 }
