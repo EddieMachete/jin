@@ -2,8 +2,9 @@
 <!-- https://www.intertech.com/Blog/android-custom-view-tutorial-part-1-combining-existing-views/ -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_launcher" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/slides"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp">
+    </android.support.v4.view.ViewPager>
 </merge>

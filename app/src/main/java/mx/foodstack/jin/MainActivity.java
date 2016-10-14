@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String[] _groups = {"Cortes", "Bebidas", "Comidas", "Postres"};
+    private String[] mGroups = {"Cortes", "Bebidas", "Comidas", "Postres"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadGroups() {
-        ArrayAdapter groupsAdapter = new ArrayAdapter<>(this, R.layout.group_main, R.id.name, _groups);
+        ArrayAdapter groupsAdapter = new ArrayAdapter<>(this, R.layout.group_main, R.id.name, mGroups);
         ListView groupsView = (ListView)findViewById(R.id.groups);
         groupsView.setAdapter(groupsAdapter);
 
@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity
                 groupClicked(id);
             }
         });
-
-        return;
     }
 
     private void groupClicked(long id) {
